@@ -1,21 +1,26 @@
-import { AnwserQuestionUseCase } from './anwser-question'
-import { AnwsersRepository } from '../repositories/anwsers-repository'
-import { Anwser } from '../../enterprise/entities';
+import { InMemoryAnwsersRepository } from 'test/repositories/in-memory-anwsers-repository';
+import { AnwserQuestionUseCase } from './anwser-question';
 
-const fakeAnwsersRepository: AnwsersRepository = {
-    create: async (anwser: Anwser) => {
-        return;
-    }
-}
+let inMemoryAnwsersRepository:  InMemoryAnwsersRepository
+let sut: AnwserQuestionUseCase
 
-test('create an anwser', async () => {
-    const anwserQuestion = new AnwserQuestionUseCase(fakeAnwsersRepository)
+describe('Anwser Question', () => {
 
-    const anwser = await anwserQuestion.execute({
-        questionId: '1',
-        instructorId: '2',
-        content: 'nova resposta'
+    beforeEach(() => {
+        inMemoryAnwsersRepository = new InMemoryAnwsersRepository
+        sut = new AnwserQuestionUseCase(inMemoryAnwsersRepository)
     })
 
-    expect(anwser.content).toEqual('nova resposta')
+    it('should be able to anwser a question', async () => {
+
+        const { anwser } = await sut.execute({
+            questionId: '1',
+            instructorId: '123',
+            content: 'Content anwser'
+        })
+
+        expect(anwser.id).toBeTruthy()
+        expect(inMemoryAnwsersRepository.items[0]!.id).toEqual(anwser.id)
+    })
 })
+

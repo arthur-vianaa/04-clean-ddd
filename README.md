@@ -21,3 +21,5 @@
 Exemplo: EU respondo os ALUNOS
 EU e ALUNOS: entidades
 responder: Caso de uso
+
+# Fundamentos da Clean Architecture

@@ -8,12 +8,16 @@ interface AnwserQuestionUseCaseRequest {
     content: string
 }
 
+interface AnwserQuestionUseCaseResponse {
+    anwser: Anwser
+}
+
 export class AnwserQuestionUseCase {
     constructor(
         private anwsersRepository: AnwsersRepository
     ) {}
 
-    async execute({instructorId, questionId, content}: AnwserQuestionUseCaseRequest) {
+    async execute({instructorId, questionId, content}: AnwserQuestionUseCaseRequest): Promise <AnwserQuestionUseCaseResponse> {
         const anwser = Anwser.create({
             content,
             authorId: new UniqueEntityID(instructorId),
@@ -22,6 +26,6 @@ export class AnwserQuestionUseCase {
 
     await this.anwsersRepository.create(anwser)
 
-    return anwser
+    return {anwser}
     }
 }
