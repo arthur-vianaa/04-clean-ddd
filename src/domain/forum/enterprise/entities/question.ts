@@ -9,7 +9,7 @@ export interface QuestionProps {
     content: string
     slug: Slug
     authorId: UniqueEntityID 
-    bestAnwserId?: UniqueEntityID | undefined
+    bestAnswerId?: UniqueEntityID | undefined
     createdAt: Date
     updatedAt?: Date | undefined
 }
@@ -24,8 +24,8 @@ export class Question extends Entity<QuestionProps> {
         return this.props.content
     }
 
-    get bestAnwserId() {
-        return this.props.bestAnwserId
+    get bestAnswerId() {
+        return this.props.bestAnswerId
     }
 
     get title() {
@@ -70,8 +70,8 @@ export class Question extends Entity<QuestionProps> {
         this.touch()
     }
 
-    set bestAnwserId(bestAnwserId: UniqueEntityID | undefined) {
-        this.props.bestAnwserId = bestAnwserId
+    set bestAnswerId(bestAnswerId: UniqueEntityID | undefined) {
+        this.props.bestAnswerId = bestAnswerId
         this.touch()
     }
 
@@ -79,7 +79,7 @@ export class Question extends Entity<QuestionProps> {
         const question = new Question({
             ...props,
             slug: props.slug ?? Slug.createFromText(props.title),
-            createdAt: props.createdAt ?? new Date(), // Fixed: fallback to current date if not provided
+            createdAt: props.createdAt ?? new Date(), 
         }, id)
 
         return question

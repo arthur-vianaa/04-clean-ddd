@@ -5,8 +5,8 @@
       "@/*": ["./src/*"]
     },
     
-    "module": "ESNext",                  // Changed from nodenext
-    "moduleResolution": "Bundler",        // Changed from nodenext -> fixes the extension error
+    "module": "ESNext",                  
+    "moduleResolution": "Bundler",        
     "target": "es2022",
     "types": ["node", "vitest/globals"],
     "sourceMap": true,
@@ -16,7 +16,7 @@
     "exactOptionalPropertyTypes": true,
     "strict": true,
     "jsx": "react-jsx",
-    "verbatimModuleSyntax": false,       // Changed to false
+    "verbatimModuleSyntax": false,     
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
