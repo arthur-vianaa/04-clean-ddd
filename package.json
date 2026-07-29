@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "barrels": "barrelsby --delete --location all --directory src/domain/entities src/core/entities --exclude \".*\\.spec\\.ts$\" \".*\\.test\\.ts$\"",
+    "barrels": "barrelsby --delete --location all --directory src/domain/forum/enterprise/entities src/core/entities --exclude \".*\\.spec\\.ts$\" \".*\\.test\\.ts$\"",
     "test": "vitest run",
     "test:watch": "vitest"
   },

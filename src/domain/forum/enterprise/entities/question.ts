@@ -3,6 +3,9 @@ import { Entity } from "@/core/entities/entity"
 import { UniqueEntityID } from "@/core/entities"
 import { Optional } from "@/core/types/optional"
 import dayjs from "dayjs"
+import { AggregateRoot } from "@/core/entities/aggregate-root"
+import { QuestionAttachment } from "./question-attachment"
+import { QuestionAttachmentList } from "./question-attachment-list"
 
 export interface QuestionProps {
     title: string
@@ -12,10 +15,10 @@ export interface QuestionProps {
     bestAnswerId?: UniqueEntityID | undefined
     createdAt: Date
     updatedAt?: Date | undefined
+    attachments: QuestionAttachmentList
 }
 
-export class Question extends Entity<QuestionProps> {
-    // Add the missing getter here:
+export class Question extends AggregateRoot<QuestionProps> {
     get authorId() {
         return this.props.authorId
     }
@@ -55,6 +58,10 @@ export class Question extends Entity<QuestionProps> {
             .concat('...')
     }
 
+    get attachments() {
+        return this.props.attachments
+    }
+
     private touch() {
         this.props.updatedAt = new Date()
     }
@@ -75,9 +82,15 @@ export class Question extends Entity<QuestionProps> {
         this.touch()
     }
 
-    static create(props: Optional<QuestionProps, 'createdAt' | 'slug'>, id?: UniqueEntityID) {
+    set attachments(attachments: QuestionAttachmentList) {
+        this.props.attachments = attachments
+        this.touch()
+    }
+
+    static create(props: Optional<QuestionProps, 'createdAt' | 'slug' | 'attachments'>, id?: UniqueEntityID) {
         const question = new Question({
             ...props,
+            attachments: props.attachments ?? new QuestionAttachmentList,
             slug: props.slug ?? Slug.createFromText(props.title),
             createdAt: props.createdAt ?? new Date(), 
         }, id)

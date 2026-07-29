@@ -3,14 +3,17 @@ import { GetQuestionBySlugUseCase } from './get-question-by-slug';
 import { Question, Slug } from '../../enterprise/entities';
 import { UniqueEntityID } from '@/core/entities';
 import { makeQuestion } from 'test/factories/make-question';
+import { InMemoryQuestionAttachmentsRepository } from 'test/repositories/in-memory-question-attachments-repository';
 
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository
+let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository
 let sut: GetQuestionBySlugUseCase
 
 describe('Get Question by Slug', () => {
 
     beforeEach(() => {
-        inMemoryQuestionsRepository = new InMemoryQuestionsRepository
+        inMemoryQuestionAttachmentsRepository = new InMemoryQuestionAttachmentsRepository
+        inMemoryQuestionsRepository = new InMemoryQuestionsRepository(inMemoryQuestionAttachmentsRepository)
         sut = new GetQuestionBySlugUseCase(inMemoryQuestionsRepository)
     })
 
