@@ -1,4 +1,4 @@
-# Resumo
+# Repositorio
 
 Esse repositorio contem uma aplicacao backend feita para aprender os conceitos de DDD a partir das aulas da RocketSeat.
 

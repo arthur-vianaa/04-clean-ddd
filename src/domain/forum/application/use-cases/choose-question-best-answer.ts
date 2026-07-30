@@ -3,8 +3,8 @@ import { AnswersRepository } from "../repositories/answers-repository"
 import { Answer, Question } from "../../enterprise/entities"
 import { QuestionsRepository } from "../repositories/questions-repository"
 import { Either, left, right } from "@/core/either"
-import { ResourceNotFoundError } from "./errors/resource-not-found-error"
-import { NotAllowedError } from "./errors/not-allowed-error"
+import { ResourceNotFoundError } from "../../../../core/errors/errors/resource-not-found-error"
+import { NotAllowedError } from "../../../../core/errors/errors/not-allowed-error"
 
 interface ChooseQuestionBestAnswerRequest {
     authorId: string
