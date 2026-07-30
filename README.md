@@ -19,6 +19,9 @@ Responsavel pelo contexto de negocio do mundo real que o software se propoe a re
 - Casos de uso: Como o problema eh resolvido na pratica, as acoes do sistema (ex: ResponderDuvida, CancelarMatricula).
 - Eventos de Dominio: Notificacoes sobre acontecimentos relevantes que alteraram o estado do dominio (ex: PedidoCriado, AlunoMatriculado).
 - SubDominios: Divisao de um problema complexo em contextos menores e delimitados.
+  - Core: Essencial a aplicacao
+  - Supporting: Da suporte ao funcionamento do core
+  - Generic: Necessarios, mas menos importantes
 
 Exemplo:
 "EU respondo os ALUNOS"
